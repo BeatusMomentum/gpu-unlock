@@ -36,6 +36,8 @@ static const unsigned short supported_ids[] = {
 	/* GA106 (validated only on RTX 3060 12GB 0x2504) */
 	0x2501, 0x2503, 0x2504, 0x2505, 0x2507, 0x2508, 0x2509, 0x252f,
 	0x2544,
+	/* GA106M RTX 3060 Laptop/Max-Q */
+	0x2520, 0x2560,
 };
 
 /* A target card. Those unlocked at boot stay listed, with a reference, to be
