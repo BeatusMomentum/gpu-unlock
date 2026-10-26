@@ -29,7 +29,8 @@ DEBS    := $(foreach p,dkms firmware,$(DEBDIR)/gpu-unlock-$(p)_$(VERSION)_all.de
 
 .PHONY: all dist inputs firmware assets install-dkms install-firmware \
         install-mkinitcpio install-initramfs-tools install-dracut \
-        install-licenses arch deb rpm install install-arch install-deb install-rpm 
+        install-licenses arch deb rpm install install-arch install-deb install-rpm \
+        test-module test-packages
 
 all:
 
@@ -70,7 +71,7 @@ install-firmware:
 	install -Dm644 $(ASSETS)/NVIDIA-LICENSE $(DESTDIR)$(LICENSEDIR)/gpu-unlock-firmware/NVIDIA-LICENSE
 	install -Dm644 firmware/NOTICE.md $(DESTDIR)$(LICENSEDIR)/gpu-unlock-firmware/NOTICE.md
 
-# One file per initramfs generator: include gpu_unlock and its firmware in
+# Per initramfs generator: include gpu_unlock and its firmware in
 # the image so it runs before an nvidia module loaded from the initramfs.
 install-mkinitcpio:
 	install -Dm644 packaging/boot/mkinitcpio.conf $(DESTDIR)/etc/mkinitcpio.conf.d/zz-gpu-unlock.conf
@@ -78,6 +79,8 @@ install-mkinitcpio:
 install-initramfs-tools:
 	install -Dm644 packaging/boot/initramfs-tools.conf \
 		$(DESTDIR)/usr/share/initramfs-tools/modules.d/gpu-unlock.conf
+	install -Dm755 packaging/boot/initramfs-tools-init-top \
+		$(DESTDIR)/usr/share/initramfs-tools/scripts/init-top/gpu-unlock
 
 install-dracut:
 	install -Dm644 packaging/boot/dracut.conf $(DESTDIR)/usr/lib/dracut/dracut.conf.d/gpu-unlock.conf
@@ -138,3 +141,11 @@ install-rpm:
 	sudo dnf builddep -y packaging/rpm/gpu-unlock.spec
 	$(MAKE) rpm
 	sudo dnf install -y $(RPMDIR)/RPMS/noarch/gpu-unlock-*-$(VERSION)-*.noarch.rpm
+
+# Build the module, or build, install and remove the packages, in a
+# container of each distribution.
+test-module:
+	tests/docker.sh module
+
+test-packages:
+	INPUTS=$(INPUTS) tests/docker.sh package
