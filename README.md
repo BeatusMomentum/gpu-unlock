@@ -2,7 +2,7 @@
 
 ### Your GeForce runs AI at half speed. This fixes it.
 
-![Version](https://img.shields.io/badge/version-1.1.0-76b900)![RTX 20 | 30 | 40](https://img.shields.io/badge/GeForce-RTX%2020%20%7C%2030%20%7C%2040-76b900?logo=nvidia&logoColor=white)![Linux](https://img.shields.io/badge/platform-Linux-informational?logo=linux&logoColor=white)![License GPL-2.0](https://img.shields.io/badge/license-GPL--2.0-blue)![Stars](https://img.shields.io/github/stars/Zagitta/gpu-unlock?style=flat&color=yellow)
+![Version](https://img.shields.io/badge/version-2.0.0-76b900)![RTX 20 | 30 | 40](https://img.shields.io/badge/GeForce-RTX%2020%20%7C%2030%20%7C%2040-76b900?logo=nvidia&logoColor=white)![Linux](https://img.shields.io/badge/platform-Linux-informational?logo=linux&logoColor=white)![License GPL-2.0](https://img.shields.io/badge/license-GPL--2.0-blue)![Stars](https://img.shields.io/github/stars/Zagitta/gpu-unlock?style=flat&color=yellow)
 
 **Up to 2× FP16 / BF16 / TF32 tensor throughput** · **+25–55% LLM prefill** · **+25–50% fine-tuning** · **+30–55% image generation**
 
@@ -108,12 +108,15 @@ your boot images/entries (e.g. `sudo mkinitcpio -P` for mkinitcpio UKIs).
 
 # FAQ
 
+- Q: Do you have a website/coin/installer?  
+A: No this is the one and only OG source for gpu-unlock. Crypto, websites, installers and what else is not associated with this project or the developer in any way shape or form. 
 - Q: Does this depend on a specific driver version? I see `610.43.03` is pinned.  
 A: No the driver is only fetched to extract firmware this unlock depends on    
 - Q: What about Windows?  
-A: I don't run windows and don't plan to maintain it but [https://github.com/impacifist/Windows-GPU-UNLOCK](https://github.com/impacifist/Windows-GPU-UNLOCK) has built a port, YMMV.    
+A: I don't run windows and don't plan to maintain it but [https://github.com/impacifist/Windows-GPU-UNLOCK](https://github.com/impacifist/Windows-GPU-UNLOCK) has built a port, YMMV.   
+There are windows installer's floating around but I would recommend being ++**very**++ careful with those.
 - Q: What about Blackwell (RTX 50)?  
-A: Not supported.    
+A: Not supported and unlikely to happen.    
 - Q: Why did Nvidia handicap my GPU?  
 A: Market segmentation, they want businesses to purchase the professional cards without these limitations at significantly higher prices.
 - Q: Does this hurt my GPU?  
